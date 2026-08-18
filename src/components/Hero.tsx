@@ -23,7 +23,15 @@ export default function Hero() {
         loop
         playsInline
         preload="auto"
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        // The name reveal is baked into the video itself (not HTML text),
+        // at a wide 1920x1080 native frame. On a tall, narrow mobile
+        // viewport, object-cover has to scale to the HEIGHT to fill the
+        // section edge-to-edge, which crops the width down to a sliver —
+        // the name ends up zoomed in past the point of fitting on
+        // screen. Scaling the rendered video down on narrow viewports
+        // pulls it back to a legible size without changing the fit
+        // behavior (still fills the section, just smaller content within it).
+        className="pointer-events-none absolute inset-0 h-full w-full scale-[0.55] object-cover sm:scale-100"
       >
         <source src={`${VIDEO_BASE}/page-background.mp4`} type="video/mp4" />
       </video>
