@@ -29,9 +29,12 @@ export default function Hero() {
         // section edge-to-edge, which crops the width down to a sliver —
         // the name ends up zoomed in past the point of fitting on
         // screen. Scaling the rendered video down on narrow viewports
-        // pulls it back to a legible size without changing the fit
-        // behavior (still fills the section, just smaller content within it).
-        className="pointer-events-none absolute inset-0 h-full w-full scale-[0.55] object-cover sm:scale-100"
+        // pulls it back to a legible size, but that leaves its own
+        // rectangular edge visible against the section's gradient
+        // background — a soft radial fade dissolves that edge instead
+        // of leaving a hard-edged box. Neither is needed once the video
+        // is back to full-bleed at sm+.
+        className="pointer-events-none absolute inset-0 h-full w-full scale-[0.55] object-cover [mask-image:radial-gradient(ellipse,black_70%,transparent_98%)] sm:scale-100 sm:[mask-image:none]"
       >
         <source src={`${VIDEO_BASE}/page-background.mp4`} type="video/mp4" />
       </video>
