@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f6f3ec;
+  --bg-panel: #ede8dc;
+  --bg-panel-2: #e4ddcc;
+  --section-hero: #f6f3ec;
+  --section-reel: #cae0d4;
+  --section-work: #f8e7c2;
+  --section-about: #f3e4d4;
+  --section-contact: #f7c7c2;
+  --swatch-green: #038768;
+  --swatch-red: #fe0100;
+  --swatch-amber: #ffb300;
+  --swatch-tan: #e79e68;
+  --ink: #17140f;
+  --ink-soft: #5c5546;
+  --ink-faint: #8b8371;
+  --accent: var(--swatch-amber);
+  --accent-ink: #17140f;
+  --teal: #0472fd;
+  --line: rgba(23, 20, 15, 0.14);
+  --line-strong: rgba(23, 20, 15, 0.28);
+  --border: rgba(23, 20, 15, 0.08);
+  color-scheme: light;
+}
+
+/*
+  Light is the brand's committed look, not just a fallback — no
+  prefers-color-scheme override. Dark tokens live here for a future
+  manual toggle, applied only via [data-theme="dark"] on <html>.
+*/
+:root[data-theme="dark"] {
+  --bg: #121110;
+  --bg-panel: #1b1916;
+  --bg-panel-2: #221f1b;
+  --section-hero: #121110;
+  --section-reel: #10231d;
+  --section-work: #36290e;
+  --section-about: #32261d;
+  --section-contact: #350f0e;
+  --swatch-green: #038768;
+  --swatch-red: #fe0100;
+  --swatch-amber: #ffb300;
+  --swatch-tan: #e79e68;
+  --ink: #f3efe6;
+  --ink-soft: #b4ad9e;
+  --ink-faint: #756e5e;
+  --accent: var(--swatch-amber);
+  --accent-ink: #191309;
+  --teal: #4d8fff;
+  --line: rgba(243, 239, 230, 0.14);
+  --line-strong: rgba(243, 239, 230, 0.28);
+  --border: rgba(243, 239, 230, 0.1);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-panel: var(--bg-panel);
+  --color-bg-panel-2: var(--bg-panel-2);
+  --color-section-hero: var(--section-hero);
+  --color-section-reel: var(--section-reel);
+  --color-section-work: var(--section-work);
+  --color-section-about: var(--section-about);
+  --color-section-contact: var(--section-contact);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-teal: var(--teal);
+  --color-swatch-green: var(--swatch-green);
+  --color-swatch-red: var(--swatch-red);
+  --color-swatch-amber: var(--swatch-amber);
+  --color-swatch-tan: var(--swatch-tan);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-border: var(--border);
+  --font-sans: var(--font-figtree);
+  --font-mono: var(--font-figtree);
+  --font-display: var(--font-figtree);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* CSS scroll anchoring silently re-scrolls to keep whatever element it
+     picks as an "anchor" at the same viewport position when the page's
+     layout shifts elsewhere — e.g. the Work grid's "View more" button,
+     which sits lower in the document once more videos are revealed above
+     it. That reads as the page randomly jumping down. This site already
+     computes layouts so on-screen content never shifts under a user, so
+     anchoring only ever fights that rather than helping — off entirely. */
+  overflow-anchor: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+}
+
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.grain-overlay {
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  animation: grain-shift 1s steps(4) infinite;
+}
+
+@keyframes grain-shift {
+  0% { background-position: 0 0; }
+  25% { background-position: -20px 10px; }
+  50% { background-position: 15px -15px; }
+  75% { background-position: -10px 20px; }
+  100% { background-position: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-overlay {
+    animation: none;
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* corner-bracket motif: viewfinder framing, reused across the site */
+.bracketed {
+  position: relative;
+}
+.bracketed::before,
+.bracketed::after,
+.bracketed .bl,
+.bracketed .br {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--line-strong);
+  pointer-events: none;
+}
+.bracketed::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+.bracketed::after {
+  top: -1px;
+  right: -1px;
+  border-left: none;
+  border-bottom: none;
+}
+.bracketed .bl {
+  bottom: -1px;
+  left: -1px;
+  border-right: none;
+  border-top: none;
+}
+.bracketed .br {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
