@@ -1,3 +1,5 @@
+import { VIDEO_BASE } from "./media";
+
 export type Category = "Ads" | "Social" | "Motion" | "Travel" | "More";
 export type Ratio = "16:9" | "9:16" | "1:1" | "4:5" | "21:9";
 
@@ -25,7 +27,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "16:9",
     year: "2026",
-    video: "/videos/kurzgesagt-robot.mp4",
+    video: `${VIDEO_BASE}/kurzgesagt-robot.mp4`,
   },
   {
     id: "p-around-the-moon",
@@ -33,7 +35,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "16:9",
     year: "2026",
-    video: "/videos/around-the-moon-animation.mp4",
+    video: `${VIDEO_BASE}/around-the-moon-animation.mp4`,
   },
   {
     id: "p-ecosystems",
@@ -41,7 +43,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "16:9",
     year: "2026",
-    video: "/videos/ecosystems-animation.mp4",
+    video: `${VIDEO_BASE}/ecosystems-animation.mp4`,
   },
   {
     id: "p-fish-swimming",
@@ -49,7 +51,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "4:5",
     year: "2026",
-    video: "/videos/fish-swimming.mp4",
+    video: `${VIDEO_BASE}/fish-swimming.mp4`,
   },
   {
     id: "p-proximity",
@@ -57,7 +59,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "16:9",
     year: "2026",
-    video: "/videos/proximity-animation.mp4",
+    video: `${VIDEO_BASE}/proximity-animation.mp4`,
   },
   {
     id: "p-mosaic",
@@ -65,7 +67,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "1:1",
     year: "2026",
-    video: "/videos/mosaic-animation.mp4",
+    video: `${VIDEO_BASE}/mosaic-animation.mp4`,
   },
   {
     id: "p-mascot",
@@ -73,7 +75,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "1:1",
     year: "2026",
-    video: "/videos/mascot-walk.mp4",
+    video: `${VIDEO_BASE}/mascot-walk.mp4`,
   },
   {
     id: "p-doctor",
@@ -81,7 +83,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "16:9",
     year: "2026",
-    video: "/videos/doctor-animation.mp4",
+    video: `${VIDEO_BASE}/doctor-animation.mp4`,
   },
   {
     id: "p-dolomites-2",
@@ -89,7 +91,7 @@ export const PROJECTS: Project[] = [
     category: "Travel",
     ratio: "21:9",
     year: "2025",
-    video: "/videos/dolomites-pt-2.mp4",
+    video: `${VIDEO_BASE}/dolomites-pt-2.mp4`,
   },
   {
     id: "p-dolomites-1",
@@ -97,7 +99,7 @@ export const PROJECTS: Project[] = [
     category: "Travel",
     ratio: "21:9",
     year: "2025",
-    video: "/videos/dolomites-pt-1.mp4",
+    video: `${VIDEO_BASE}/dolomites-pt-1.mp4`,
   },
   {
     id: "p-tamasopo",
@@ -105,7 +107,7 @@ export const PROJECTS: Project[] = [
     category: "Travel",
     ratio: "21:9",
     year: "2025",
-    video: "/videos/tamasopo-2025.mp4",
+    video: `${VIDEO_BASE}/tamasopo-2025.mp4`,
   },
   {
     id: "p-likhubula",
@@ -113,8 +115,8 @@ export const PROJECTS: Project[] = [
     category: "More",
     ratio: "16:9",
     year: "2026",
-    video: "/videos/likhubula-river.mp4",
-    fullVideo: "/videos/likhubula-river-full.mp4",
+    video: `${VIDEO_BASE}/likhubula-river.mp4`,
+    fullVideo: `${VIDEO_BASE}/likhubula-river-full.mp4`,
   },
   {
     id: "p-sparkling",
@@ -122,7 +124,7 @@ export const PROJECTS: Project[] = [
     category: "Ads",
     ratio: "16:9",
     year: "2026",
-    video: "/videos/sparkling-energy-sizzle.mp4",
+    video: `${VIDEO_BASE}/sparkling-energy-sizzle.mp4`,
   },
   {
     id: "p-huddles-babysitter",
@@ -130,7 +132,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "9:16",
     year: "2026",
-    video: "/videos/huddles-babysitter.mp4",
+    video: `${VIDEO_BASE}/huddles-babysitter.mp4`,
   },
   {
     id: "p-big-interview",
@@ -138,7 +140,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "16:9",
     year: "2026",
-    video: "/videos/big-interview.mp4",
+    video: `${VIDEO_BASE}/big-interview.mp4`,
   },
   {
     id: "p-click",
@@ -146,7 +148,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "1:1",
     year: "2026",
-    video: "/videos/click-animation.mp4",
+    video: `${VIDEO_BASE}/click-animation.mp4`,
   },
   {
     id: "p-motion-art",
@@ -154,7 +156,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "1:1",
     year: "2026",
-    video: "/videos/motion-art-animation.mp4",
+    video: `${VIDEO_BASE}/motion-art-animation.mp4`,
   },
   {
     id: "p-standard-process",
@@ -162,7 +164,7 @@ export const PROJECTS: Project[] = [
     category: "Motion",
     ratio: "9:16",
     year: "2026",
-    video: "/videos/standard-process-vet-formulas.mp4",
+    video: `${VIDEO_BASE}/standard-process-vet-formulas.mp4`,
   },
   {
     id: "p-lemonlight",
@@ -170,7 +172,7 @@ export const PROJECTS: Project[] = [
     category: "Social",
     ratio: "16:9",
     year: "2026",
-    video: "/videos/lemonlight-reels.mp4",
+    video: `${VIDEO_BASE}/lemonlight-reels.mp4`,
   },
   {
     id: "p-casa-brisa",
@@ -178,7 +180,7 @@ export const PROJECTS: Project[] = [
     category: "Social",
     ratio: "9:16",
     year: "2023",
-    video: "/videos/casa-brisa.mp4",
+    video: `${VIDEO_BASE}/casa-brisa.mp4`,
   },
   {
     id: "p-zoho",
@@ -186,7 +188,7 @@ export const PROJECTS: Project[] = [
     category: "Ads",
     ratio: "16:9",
     year: "2023",
-    video: "/videos/zoho-city.mp4",
+    video: `${VIDEO_BASE}/zoho-city.mp4`,
   },
   {
     id: "p-nascar",
@@ -194,7 +196,7 @@ export const PROJECTS: Project[] = [
     category: "Ads",
     ratio: "16:9",
     year: "2026",
-    video: "/videos/ticketpurchase-nascar.mp4",
+    video: `${VIDEO_BASE}/ticketpurchase-nascar.mp4`,
   },
   {
     id: "p-oregon-press",
@@ -202,7 +204,7 @@ export const PROJECTS: Project[] = [
     category: "Ads",
     ratio: "16:9",
     year: "2023",
-    video: "/videos/oregon-video-press.mp4",
+    video: `${VIDEO_BASE}/oregon-video-press.mp4`,
   },
   {
     id: "p-contractor-exam",
@@ -210,7 +212,7 @@ export const PROJECTS: Project[] = [
     category: "Social",
     ratio: "9:16",
     year: "2026",
-    video: "/videos/goald-cost-schools-contractor-exam.mp4",
+    video: `${VIDEO_BASE}/goald-cost-schools-contractor-exam.mp4`,
   },
   {
     id: "p-trailer-autoservicio",
@@ -218,7 +220,7 @@ export const PROJECTS: Project[] = [
     category: "More",
     ratio: "16:9",
     year: "2026",
-    video: "/videos/trailer-autoservicio.mp4",
+    video: `${VIDEO_BASE}/trailer-autoservicio.mp4`,
   },
   {
     id: "p-kristi-borglum",
@@ -226,7 +228,7 @@ export const PROJECTS: Project[] = [
     category: "More",
     ratio: "4:5",
     year: "2026",
-    video: "/videos/kristi-borglum-moneta-blog.mp4",
+    video: `${VIDEO_BASE}/kristi-borglum-moneta-blog.mp4`,
   },
   {
     id: "p-casa-roka-overview",
@@ -234,7 +236,7 @@ export const PROJECTS: Project[] = [
     category: "Social",
     ratio: "9:16",
     year: "2022",
-    video: "/videos/casa-roka-overview.mp4",
+    video: `${VIDEO_BASE}/casa-roka-overview.mp4`,
   },
   {
     id: "p-casa-roka-bedrooms",
@@ -242,7 +244,7 @@ export const PROJECTS: Project[] = [
     category: "Social",
     ratio: "9:16",
     year: "2022",
-    video: "/videos/casa-roka-bedrooms.mp4",
+    video: `${VIDEO_BASE}/casa-roka-bedrooms.mp4`,
   },
   {
     id: "p-casa-teresa-restaurant",
@@ -250,7 +252,7 @@ export const PROJECTS: Project[] = [
     category: "Social",
     ratio: "9:16",
     year: "2022",
-    video: "/videos/casa-teresa-restaurant.mp4",
+    video: `${VIDEO_BASE}/casa-teresa-restaurant.mp4`,
   },
   {
     id: "p-casa-teresa-bar",
@@ -258,7 +260,7 @@ export const PROJECTS: Project[] = [
     category: "Social",
     ratio: "9:16",
     year: "2022",
-    video: "/videos/casa-teresa-bar.mp4",
+    video: `${VIDEO_BASE}/casa-teresa-bar.mp4`,
   },
   {
     id: "p-kings-sweatshirt",
@@ -266,7 +268,7 @@ export const PROJECTS: Project[] = [
     category: "Ads",
     ratio: "9:16",
     year: "2026",
-    video: "/videos/kings-sweatshirt.mp4",
+    video: `${VIDEO_BASE}/kings-sweatshirt.mp4`,
   },
   {
     id: "p-armstrong-ai",
@@ -274,7 +276,7 @@ export const PROJECTS: Project[] = [
     category: "Ads",
     ratio: "9:16",
     year: "2026",
-    video: "/videos/armstrong-lee-baker-ai-reel.mp4",
+    video: `${VIDEO_BASE}/armstrong-lee-baker-ai-reel.mp4`,
   },
   {
     id: "p-armstrong-offshore",
@@ -282,7 +284,7 @@ export const PROJECTS: Project[] = [
     category: "Ads",
     ratio: "9:16",
     year: "2026",
-    video: "/videos/armstrong-lee-baker-offshore.mp4",
+    video: `${VIDEO_BASE}/armstrong-lee-baker-offshore.mp4`,
   },
   {
     id: "p-slicktext",
@@ -290,7 +292,7 @@ export const PROJECTS: Project[] = [
     category: "Social",
     ratio: "9:16",
     year: "2026",
-    video: "/videos/slicktext-youtube-short.mp4",
+    video: `${VIDEO_BASE}/slicktext-youtube-short.mp4`,
   },
   {
     id: "p-motive-knee-pain",
@@ -298,7 +300,7 @@ export const PROJECTS: Project[] = [
     category: "Social",
     ratio: "4:5",
     year: "2026",
-    video: "/videos/motive-knee-pain.mp4",
+    video: `${VIDEO_BASE}/motive-knee-pain.mp4`,
   },
   {
     id: "p-box-office",
@@ -306,6 +308,6 @@ export const PROJECTS: Project[] = [
     category: "Ads",
     ratio: "9:16",
     year: "2026",
-    video: "/videos/box-office-ticket-sales.mp4",
+    video: `${VIDEO_BASE}/box-office-ticket-sales.mp4`,
   },
 ];

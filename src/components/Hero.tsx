@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Bracket from "./Bracket";
 import Reveal from "./Reveal";
+import { VIDEO_BASE } from "@/lib/media";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -24,7 +25,7 @@ export default function Hero() {
         preload="auto"
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
       >
-        <source src="/videos/page-background.mp4" type="video/mp4" />
+        <source src={`${VIDEO_BASE}/page-background.mp4`} type="video/mp4" />
       </video>
 
       <div aria-hidden className="pointer-events-none absolute inset-0">

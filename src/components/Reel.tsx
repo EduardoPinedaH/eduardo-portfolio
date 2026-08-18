@@ -3,6 +3,7 @@ import Reveal from "./Reveal";
 import Eyebrow from "./Eyebrow";
 import EditTimeline from "./EditTimeline";
 import ReelPlayer from "./ReelPlayer";
+import { VIDEO_BASE } from "@/lib/media";
 
 export default function Reel() {
   return (
@@ -24,7 +25,7 @@ export default function Reel() {
 
         <Reveal>
           <Bracket className="relative aspect-video overflow-hidden bg-bg-panel">
-            <ReelPlayer src="/videos/reel.mp4" />
+            <ReelPlayer src={`${VIDEO_BASE}/reel.mp4`} />
           </Bracket>
           <EditTimeline className="mt-4" />
         </Reveal>

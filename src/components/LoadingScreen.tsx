@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingTimeline from "./LoadingTimeline";
+import { VIDEO_BASE } from "@/lib/media";
 
 export default function LoadingScreen() {
   const [loading, setLoading] = useState(true);
@@ -57,7 +58,7 @@ export default function LoadingScreen() {
             playsInline
             className="h-48 w-48 object-contain sm:h-56 sm:w-56"
           >
-            <source src="/videos/mascot-walk.mp4" type="video/mp4" />
+            <source src={`${VIDEO_BASE}/mascot-walk.mp4`} type="video/mp4" />
           </video>
           <LoadingTimeline className="w-64 sm:w-72" />
         </motion.div>
