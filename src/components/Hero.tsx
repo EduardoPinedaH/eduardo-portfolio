@@ -23,19 +23,21 @@ export default function Hero() {
         loop
         playsInline
         preload="auto"
-        // The name reveal is baked into the video itself (not HTML text),
-        // at a wide 1920x1080 native frame. On a tall, narrow mobile
-        // viewport, object-cover has to scale to the HEIGHT to fill the
-        // section edge-to-edge, which crops the width down to a sliver —
-        // the name ends up zoomed in past the point of fitting on
-        // screen. Scaling the rendered video down on narrow viewports
-        // pulls it back to a legible size, but that leaves its own
-        // rectangular edge visible against the section's gradient
-        // background — a soft radial fade dissolves that edge instead
-        // of leaving a hard-edged box. Neither is needed once the video
-        // is back to full-bleed at sm+.
-        className="pointer-events-none absolute inset-0 h-full w-full scale-[0.55] object-cover [mask-image:radial-gradient(ellipse,black_70%,transparent_98%)] sm:scale-100 sm:[mask-image:none]"
+        // The name reveal is baked into the video itself (not HTML text).
+        // A single wide 1920x1080 source forced object-cover to zoom way
+        // in to fill a tall mobile viewport, cropping the name past
+        // legibility — scaling/masking it back down was a workaround.
+        // A proper 9:16 export for mobile fixes it at the source: the
+        // video's own aspect ratio already matches the viewport, so
+        // object-cover can fill edge-to-edge without cropping or needing
+        // any CSS tricks, exactly like the desktop cut already does.
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
       >
+        <source
+          media="(max-width: 639px)"
+          src={`${VIDEO_BASE}/page-background-mobile.mp4`}
+          type="video/mp4"
+        />
         <source src={`${VIDEO_BASE}/page-background.mp4`} type="video/mp4" />
       </video>
 
