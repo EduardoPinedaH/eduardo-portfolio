@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "p-ecosystems",
-    title: "Ecosystems Animation",
+    title: "Kurzgesagt Ecosystems",
     category: "Motion",
     ratio: "16:9",
     year: "2026",
@@ -79,7 +79,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "p-doctor",
-    title: "Doctor Animation",
+    title: "Kurzgesagt Doctor",
     category: "Motion",
     ratio: "16:9",
     year: "2026",
@@ -192,7 +192,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "p-nascar",
-    title: "Ticketpurchase NASCAR",
+    title: "ticketpurchase NASCAR",
     category: "Ads",
     ratio: "16:9",
     year: "2026",
