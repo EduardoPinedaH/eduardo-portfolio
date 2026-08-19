@@ -1,3 +1,6 @@
+"use client";
+
+import { useCallback, useState } from "react";
 import Bracket from "./Bracket";
 import Reveal from "./Reveal";
 import Eyebrow from "./Eyebrow";
@@ -6,6 +9,15 @@ import ReelPlayer from "./ReelPlayer";
 import { VIDEO_BASE } from "@/lib/media";
 
 export default function Reel() {
+  // Mirrors ReelPlayer's real playback state so EditTimeline can animate
+  // in lockstep with the actual video instead of running its own loop.
+  const [progress, setProgress] = useState(0);
+  const [playing, setPlaying] = useState(false);
+
+  const handleProgress = useCallback((current: number, duration: number) => {
+    setProgress(duration ? current / duration : 0);
+  }, []);
+
   return (
     <section id="reel" className="relative overflow-hidden border-t border-line bg-section-reel/85 px-6 py-24 sm:px-10 sm:py-40">
       <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -25,9 +37,13 @@ export default function Reel() {
 
         <Reveal>
           <Bracket className="relative aspect-video overflow-hidden bg-bg-panel">
-            <ReelPlayer src={`${VIDEO_BASE}/reel.mp4`} />
+            <ReelPlayer
+              src={`${VIDEO_BASE}/reel.mp4`}
+              onProgress={handleProgress}
+              onPlayingChange={setPlaying}
+            />
           </Bracket>
-          <EditTimeline className="mt-4" />
+          <EditTimeline className="mt-4" progress={progress} playing={playing} />
         </Reveal>
       </div>
     </section>

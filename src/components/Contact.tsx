@@ -6,9 +6,8 @@ import Eyebrow from "./Eyebrow";
 import { SPRING } from "@/lib/motion";
 
 const SOCIALS = [
-  { label: "Instagram", href: "#" },
-  { label: "Vimeo", href: "#" },
-  { label: "LinkedIn", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/lalo_pinedah/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/eduardopinedahu/" },
 ];
 
 export default function Contact() {
@@ -47,6 +46,8 @@ export default function Contact() {
                 <motion.a
                   key={s.label}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   data-cursor="frame"
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.94 }}

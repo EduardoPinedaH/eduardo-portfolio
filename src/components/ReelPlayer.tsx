@@ -14,15 +14,29 @@ function formatTime(t: number) {
 export default function ReelPlayer({
   src,
   autoPlay = false,
+  onProgress,
+  onPlayingChange,
 }: {
   src: string;
   autoPlay?: boolean;
+  // Lets a parent (e.g. the Reel section's EditTimeline) mirror this
+  // player's real playback state instead of running its own timer.
+  onProgress?: (current: number, duration: number) => void;
+  onPlayingChange?: (playing: boolean) => void;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [current, setCurrent] = useState(0);
   const [duration, setDuration] = useState(0);
+
+  useEffect(() => {
+    onProgress?.(current, duration);
+  }, [current, duration, onProgress]);
+
+  useEffect(() => {
+    onPlayingChange?.(playing);
+  }, [playing, onPlayingChange]);
 
   useEffect(() => {
     const v = videoRef.current;
