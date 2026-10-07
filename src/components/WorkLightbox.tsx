@@ -87,7 +87,11 @@ export default function WorkLightbox({
                 maxWidth: "92vw",
               }}
             >
-              <ReelPlayer src={project.fullVideo ?? project.video} autoPlay />
+              <ReelPlayer
+                src={project.fullVideo ?? project.video}
+                poster={`/images/work/${project.id}.webp`}
+                autoPlay
+              />
 
               <button
                 type="button"

@@ -13,11 +13,15 @@ function formatTime(t: number) {
 
 export default function ReelPlayer({
   src,
+  poster,
   autoPlay = false,
   onProgress,
   onPlayingChange,
 }: {
   src: string;
+  // Still shown behind the play overlay until the video has a frame to show
+  // (and for good when the browser blocks autoplay, e.g. iOS Low Power Mode).
+  poster?: string;
   autoPlay?: boolean;
   // Lets a parent (e.g. the Reel section's EditTimeline) mirror this
   // player's real playback state instead of running its own timer.
@@ -97,6 +101,7 @@ export default function ReelPlayer({
       <video
         ref={videoRef}
         src={src}
+        poster={poster}
         playsInline
         preload="metadata"
         onClick={toggle}
