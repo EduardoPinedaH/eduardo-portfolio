@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Bracket from "./Bracket";
 import Reveal from "./Reveal";
+import ScrollHint from "./ScrollHint";
 import { VIDEO_BASE } from "@/lib/media";
 
 export default function Hero() {
@@ -82,6 +83,8 @@ export default function Hero() {
           Scroll down
         </span>
       </Bracket>
+
+      <ScrollHint />
     </section>
   );
 }
