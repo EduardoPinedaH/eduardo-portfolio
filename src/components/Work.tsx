@@ -315,8 +315,13 @@ export default function Work() {
                     >
                       {project.video && (
                         <>
+                          {/* The poster is what shows until the clip starts —
+                              and permanently when the browser won't autoplay
+                              (iOS Low Power Mode blocks it for every video).
+                              Without it those tiles are just blank panels. */}
                           <video
                             src={project.video}
+                            poster={`/images/work/${project.id}.webp`}
                             autoPlay
                             muted
                             loop
