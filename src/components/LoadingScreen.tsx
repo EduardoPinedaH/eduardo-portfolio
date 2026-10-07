@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingTimeline from "./LoadingTimeline";
-import { VIDEO_BASE } from "@/lib/media";
 
 export default function LoadingScreen() {
   const [loading, setLoading] = useState(true);
@@ -55,17 +54,22 @@ export default function LoadingScreen() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
+          {/* An animated WebP rather than a <video>: iOS Low Power Mode
+              blocks video autoplay outright (even muted + playsinline), which
+              left this slot empty. Animated images aren't subject to that
+              policy, so the penguin plays everywhere — and it's ~80KB
+              instead of a 2MB video fetched from another origin. */}
+          <img
+            src="/images/mascot-walk.webp"
+            width={480}
+            height={480}
+            alt=""
             className="h-48 w-48 object-contain sm:h-56 sm:w-56"
-            // Browsers decode video color slightly differently than a raw
+            // Browsers decode color slightly differently than a raw
             // frame-extraction tool reports (color-space handling in the
             // decode pipeline), so even a pixel-matched background color
             // can't fully guarantee zero seam. A soft radial fade on the
-            // video itself sidesteps that: its flat background dissolves
+            // image itself sidesteps that: its flat background dissolves
             // into the page well before the edge, so any remaining
             // mismatch is imperceptible instead of a hard square line.
             style={{
@@ -73,9 +77,7 @@ export default function LoadingScreen() {
               WebkitMaskImage:
                 "radial-gradient(circle, black 55%, transparent 85%)",
             }}
-          >
-            <source src={`${VIDEO_BASE}/mascot-walk.mp4`} type="video/mp4" />
-          </video>
+          />
           <LoadingTimeline className="w-64 sm:w-72" />
         </motion.div>
       )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Bracket from "./Bracket";
 import Reveal from "./Reveal";
 import ScrollHint from "./ScrollHint";
@@ -8,9 +8,14 @@ import { VIDEO_BASE } from "@/lib/media";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Set when the browser refuses to autoplay the name-reveal video — iOS Low
+  // Power Mode does this for every video, muted or not. The name only exists
+  // inside that video, so without a fallback the hero would be empty.
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
 
   useEffect(() => {
-    const play = () => videoRef.current?.play().catch(() => {});
+    const play = () =>
+      videoRef.current?.play().catch(() => setAutoplayBlocked(true));
     window.addEventListener("site:loaded", play);
     return () => window.removeEventListener("site:loaded", play);
   }, []);
@@ -41,6 +46,25 @@ export default function Hero() {
         />
         <source src={`${VIDEO_BASE}/page-background.mp4`} type="video/mp4" />
       </video>
+
+      {/* Still of the finished name (the frame the video holds on for most of
+          its loop), laid out with the same object-cover as the video so it
+          lands in exactly the same place. Only rendered when autoplay is
+          blocked, so everyone else gets the animated reveal untouched. */}
+      {autoplayBlocked && (
+        <picture>
+          <source
+            media="(max-width: 639px)"
+            srcSet="/images/hero-name-mobile.webp"
+          />
+          <img
+            src="/images/hero-name.webp"
+            alt=""
+            aria-hidden
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          />
+        </picture>
+      )}
 
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div
