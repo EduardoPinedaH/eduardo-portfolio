@@ -49,7 +49,7 @@ export default function ScrollHint() {
     // owns the entrance, so the two transforms never fight each other.
     <div
       aria-hidden
-      className={`pointer-events-none fixed bottom-0 right-[clamp(40px,calc(3vw+24px),72px)] sm:right-[clamp(58px,calc(3vw+24px),72px)] z-30 w-[clamp(120px,13vw,200px)] select-none transition-[opacity,translate] duration-400 ease-out motion-reduce:hidden ${
+      className={`pointer-events-none fixed bottom-0 right-[clamp(40px,calc(3vw+24px),72px)] sm:right-[clamp(58px,calc(3vw+24px),72px)] z-30 w-[clamp(88px,24vw,120px)] sm:w-[clamp(120px,13vw,200px)] select-none transition-[opacity,translate] duration-400 ease-out motion-reduce:hidden ${
         hidden ? "translate-y-6 opacity-0" : ""
       }`}
     >

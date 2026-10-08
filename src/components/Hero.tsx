@@ -1,10 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Bracket from "./Bracket";
 import Reveal from "./Reveal";
 import ScrollHint from "./ScrollHint";
 import { VIDEO_BASE } from "@/lib/media";
+
+const MOBILE_QUERY = "(max-width: 639px)";
+const SRC_MOBILE = `${VIDEO_BASE}/page-background-mobile.mp4`;
+const SRC_DESKTOP = `${VIDEO_BASE}/page-background.mp4`;
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -12,18 +16,54 @@ export default function Hero() {
   // Power Mode does this for every video, muted or not. The name only exists
   // inside that video, so without a fallback the hero would be empty.
   const [autoplayBlocked, setAutoplayBlocked] = useState(false);
+  // Which cut of the video to load. Chosen in JS rather than with
+  // <source media="…">: iOS Safari doesn't honor `media` on video sources and
+  // played the 16:9 desktop file on phones, which object-cover then zoomed
+  // until only a few letters of the name were visible. Left undefined until
+  // we know, so a phone never even starts downloading the desktop file.
+  const [src, setSrc] = useState<string | undefined>(undefined);
+  const siteLoaded = useRef(false);
 
   useEffect(() => {
-    const play = () =>
-      videoRef.current?.play().catch(() => setAutoplayBlocked(true));
-    window.addEventListener("site:loaded", play);
-    return () => window.removeEventListener("site:loaded", play);
+    const mq = window.matchMedia(MOBILE_QUERY);
+    const choose = () => setSrc(mq.matches ? SRC_MOBILE : SRC_DESKTOP);
+    choose();
+    // Rotating a phone can cross the breakpoint.
+    mq.addEventListener("change", choose);
+    return () => mq.removeEventListener("change", choose);
   }, []);
+
+  const play = useCallback(() => {
+    const v = videoRef.current;
+    if (!v || !v.getAttribute("src")) return;
+    v.play().catch((err: unknown) => {
+      // A new source interrupting the old play() isn't a blocked autoplay.
+      if ((err as { name?: string })?.name !== "AbortError") {
+        setAutoplayBlocked(true);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const onLoaded = () => {
+      siteLoaded.current = true;
+      play();
+    };
+    window.addEventListener("site:loaded", onLoaded);
+    return () => window.removeEventListener("site:loaded", onLoaded);
+  }, [play]);
+
+  // If the source changes after the loader has already cleared (rotation),
+  // pick playback back up on the new file.
+  useEffect(() => {
+    if (src && siteLoaded.current) play();
+  }, [src, play]);
 
   return (
     <section className="relative overflow-hidden bg-section-hero/85">
       <video
         ref={videoRef}
+        src={src}
         aria-hidden
         muted
         loop
@@ -38,14 +78,7 @@ export default function Hero() {
         // object-cover can fill edge-to-edge without cropping or needing
         // any CSS tricks, exactly like the desktop cut already does.
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-      >
-        <source
-          media="(max-width: 639px)"
-          src={`${VIDEO_BASE}/page-background-mobile.mp4`}
-          type="video/mp4"
-        />
-        <source src={`${VIDEO_BASE}/page-background.mp4`} type="video/mp4" />
-      </video>
+      />
 
       {/* Still of the finished name (the frame the video holds on for most of
           its loop), laid out with the same object-cover as the video so it
@@ -77,7 +110,11 @@ export default function Hero() {
         />
       </div>
 
-      <Bracket className="relative z-10 m-4 flex min-h-[92vh] flex-col items-center px-6 py-16 text-center sm:m-8 sm:px-10 sm:py-20">
+      {/* svh, not vh: on iOS `vh` is the screen height with Safari's toolbars
+          retracted, so a 92vh hero is taller than what's actually visible on
+          load — the "Scroll down" label ends up below the fold. svh is the
+          visible height (and equals vh wherever there's no dynamic toolbar). */}
+      <Bracket className="relative z-10 m-4 flex min-h-[92svh] flex-col items-center px-6 py-16 text-center sm:m-8 sm:px-10 sm:py-20">
         <div className="flex flex-1 flex-col items-center justify-end pb-12 sm:pb-16">
           <Reveal className="mx-auto max-w-[46ch]">
             <p className="text-[1.05rem] leading-relaxed text-ink-soft">
