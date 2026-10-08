@@ -24,7 +24,10 @@ export default function About() {
   const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
   return (
-    <section id="about" className="relative overflow-hidden border-t border-line bg-section-about/85 px-6 py-24 sm:px-10 sm:py-40">
+    // Extra top padding on phones: the penguin peeks over the photo's top
+    // edge, and when the nav link scrolls here the fixed nav was covering
+    // its ears.
+    <section id="about" className="relative overflow-hidden border-t border-line bg-section-about/85 px-6 pb-24 pt-36 sm:px-10 sm:py-40">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div
           className="absolute -right-32 bottom-0 h-[480px] w-[480px] rounded-full opacity-60 blur-[100px]"
@@ -38,9 +41,11 @@ export default function About() {
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-14 sm:grid-cols-[1fr_1.3fr] sm:gap-20">
         <Reveal>
           <div className="relative">
-            {/* Penguin peeking out from the photo's left edge, hands resting
-                on the picture as if holding it. */}
-            <PenguinPeek />
+            {/* Penguin holding the photo, hands resting on the picture: from
+                the left edge on wide screens, over the top edge on phones
+                and tablets where there's no room in the margin. */}
+            <PenguinPeek side="left" />
+            <PenguinPeek side="top" />
             <Bracket
               ref={frameRef}
               className="relative z-10 aspect-[4/5] overflow-hidden bg-bg-panel"
