@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Bracket from "./Bracket";
+import PenguinPeek from "./PenguinPeek";
 import Reveal from "./Reveal";
 import Eyebrow from "./Eyebrow";
 import { SPRING } from "@/lib/motion";
@@ -36,30 +37,35 @@ export default function About() {
       </div>
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-14 sm:grid-cols-[1fr_1.3fr] sm:gap-20">
         <Reveal>
-          <Bracket
-            ref={frameRef}
-            className="relative aspect-[4/5] overflow-hidden bg-bg-panel"
-          >
-            <motion.div className="absolute inset-0" style={{ y }}>
-              <Image
-                src="/images/eduardo-greenhouse.jpeg"
-                alt="Eduardo Pineda"
-                fill
-                sizes="(min-width: 640px) 40vw, 90vw"
-                className="scale-110 object-cover grayscale contrast-[1.1]"
-                priority={false}
+          <div className="relative">
+            {/* Penguin peeking out from the photo's left edge, hands resting
+                on the picture as if holding it. */}
+            <PenguinPeek />
+            <Bracket
+              ref={frameRef}
+              className="relative z-10 aspect-[4/5] overflow-hidden bg-bg-panel"
+            >
+              <motion.div className="absolute inset-0" style={{ y }}>
+                <Image
+                  src="/images/eduardo-greenhouse.jpeg"
+                  alt="Eduardo Pineda"
+                  fill
+                  sizes="(min-width: 640px) 40vw, 90vw"
+                  className="scale-110 object-cover grayscale contrast-[1.1]"
+                  priority={false}
+                />
+              </motion.div>
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(165deg, var(--ink) 0%, var(--bg-panel) 55%, var(--accent) 100%)",
+                  mixBlendMode: "color",
+                  opacity: 0.9,
+                }}
               />
-            </motion.div>
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(165deg, var(--ink) 0%, var(--bg-panel) 55%, var(--accent) 100%)",
-                mixBlendMode: "color",
-                opacity: 0.9,
-              }}
-            />
-          </Bracket>
+            </Bracket>
+          </div>
         </Reveal>
 
         <Reveal delay={0.08}>
